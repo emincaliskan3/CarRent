@@ -1,0 +1,69 @@
+﻿<div class="top-area">
+    <div class="header-area">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+            <div class="container">
+                <style>
+                    .header-area {
+                        background-color: black;
+                        color: white; /* Metin rengini beyaz yapmak için */
+                    }
+
+                    /* Kullanıcı adı ve dropdown menüsü için özel stil */
+                    .user-menu {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .dropdown-toggle {
+                        margin-left: 10px; /* Dropdown menüsü ile kullanıcı adı arasında bir boşluk bırak */
+                    }
+                </style>
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/">carvilla<span></span></a>
+                </div><!--/.navbar-header-->
+                <!-- End Header Navigation -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li><a  asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                       
+                        <li class="scroll"><a href="#new-cars">Yeni Araçlar</a></li>
+                        <li>@await Component.InvokeAsync("Brands")</li>
+                        <li class="scroll"><a href="#contact">İletişim</a></li>
+                        <li>@await Component.InvokeAsync("Categories")</li>
+                        <li class="user-menu">
+                            @if (Context.Session.GetInt32("IsLoggedIn") == 1) // Eğer kullanıcı giriş yapmışsa bu değer gelir
+                            {
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-fill"></i>
+                                        <span>@Context.Session.GetString("kullanici") @Context.Session.GetString("soyad")</span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/Account/Index"><i class="bi bi-gear-fill"></i> Hesap Ayarları</a></li>
+                                        <li><a class="dropdown-item" href="/Account/KullaniciYorum"><i class="bi bi-gear-fill"></i> Yorumlarım </a></li>
+                                        <li><a class="dropdown-item" href="/Account/RentedCars"><i class="bi bi-gear-fill"></i> Kiraladığım Araçlar</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> Çıkış Yap</a></li>
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login" type="button" class="btn btn-outline-dark me-2 bi bi-person-fill">GIRIS</a>
+                            }
+                        </li>
+                    </ul><!--/.nav -->
+                </div><!-- /.navbar-collapse -->
+            </div><!--/.container-->
+        </nav><!--/nav-->
+        <!-- End Navigation -->
+    </div><!--/.header-area-->
+    <div class="clearfix"></div>
+</div>

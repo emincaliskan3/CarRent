@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Comment>
+@foreach (var item in Model.Where(x => x.IsPopular))
+{
+    <div class="col-sm-3 col-xs-12">
+        <div class="single-testimonial-box">
+            <div class="testimonial-description">
+                <div class="testimonial-info">
+                    <div class="testimonial-img">
+                        <img src="~/carrent/assets/images/clients/c1.png" />
+                    </div><!--/.testimonial-img-->
+                </div><!--/.testimonial-info-->
+                <div class="testimonial-comment">
+                    <p>
+                        @item.Contents
+                    </p>
+                </div><!--/.testimonial-comment-->
+                <div class="testimonial-person">
+                    <h2><a href="#">@item.User.Name</a></h2>
+
+                </div><!--/.testimonial-person-->
+            </div><!--/.testimonial-description-->
+        </div><!--/.single-testimonial-box-->
+    </div>
+
+}

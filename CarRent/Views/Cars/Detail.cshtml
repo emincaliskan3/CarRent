@@ -1,0 +1,82 @@
+﻿@model Car
+@{
+    ViewData["Title"] = "Car Detail";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<section class="py-5">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 align-items-center mb-5">
+            <div class="col-md-6">
+                <img class="card-img-top mb-5 mb-md-0" src="/Images/@Model.Image" alt="@Model.Image">
+            </div>
+            <div class="col-md-6">
+                <h1 class="display-4 fw-bolder">@Model.Brand.Name @Model.Name</h1>
+                <div class="small mb-3">@Model.Model Model</div>
+                <div class="small mb-3">@Model.MotorGucu HP</div>
+                <div class="small mb-3">@Model.GearName Vites</div>
+                <div class="fs-5 mb-5">
+                    <span class="text-decoration-line-through">@Model.Price</span>
+                    @if (ViewBag.IsLoggedIn)
+                    {
+                        <form class="rent-form" asp-controller="Cart" asp-action="RentCar" method="post">
+                            <input type="hidden" name="carId" value="@Model.Id" />
+                            <div class="form-group">
+                                <label for="startDate">Başlangıç Tarihi</label>
+                                <input type="date" id="startDate" name="startDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">Bitiş Tarihi</label>
+                                <input type="date" id="endDate" name="endDate" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary ms-auto rounded-pill px-4 py-2">Aracı Kirala</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <p>Aracı Kiralamak İçin Giriş Yapmalısın <a asp-controller="Account" asp-action="Login">giriş yapmalısınız</a>.</p>
+                    }
+                </div>
+                <br />
+                <h5>Araç Özellikleri</h5>
+                <p class="lead">@Model.Description</p>
+            </div>
+        </div>
+
+        @if (ViewBag.IsLoggedIn)
+        {
+            <div class="col-lg-4">
+                <h5>Yorum Ekle</h5>
+                <form class="comment-form" asp-controller="Cars" asp-action="Comment" method="post">
+                    <div class="form-group">
+                        <label for="commentContents">Yorumunuz</label>
+                        <textarea class="form-control" id="commentContents" name="Contents" rows="3" required></textarea>
+                    </div>
+                    <input type="hidden" name="CarId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <p>Yorum ekleyebilmek için <a asp-controller="Account" asp-action="Login">giriş yapmalısınız</a>.</p>
+        }
+
+        <div class="col-lg-8 mt-5">
+            <h5>Yorumlar</h5>
+            @foreach (var comment in ViewBag.Comments)
+            {
+                <div class="comment-container">
+                    <div class="comment-author">@comment.User.Name:</div>
+                    <div class="comment-content">@comment.Contents</div>
+                    <div class="comment-date">@comment.Date.ToString("g")</div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Car>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Where(x => x.IsActive))
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <a href="/Cars/Detail/@item?.Id" class="text-decoration-none">
+                    <div class="single-featured-cars">
+                        <div class="featured-img-box">
+                            <div class="featured-cars-img">
+                                <img src="/Images/@item.Image" class="img-fluid">
+                            </div>
+                            <div class="featured-model-info">
+                                <p>
+                                    @item.Model
+                                    <span class="featured-hp-span">@item.MotorGucu HP</span>
+                                    @item.GearName
+                                    <h2><a href="#">@item.Brand.Name @item.Name</a></h2>
+                                    <h3>@item.Price</h3>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

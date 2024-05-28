@@ -1,0 +1,43 @@
+﻿@model List<Comment>
+
+@{
+    ViewData["Title"] = "Yorumlarım";
+}
+ <br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Yorumlar</th>
+                <th>Tarih</th>
+                <th>Araç</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+                <tr>
+                    <td>@comment.Contents</td>
+                    <td>@comment.Date.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@comment.Car.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Henüz bir yorumunuz bulunmamaktadır.</p>
+}

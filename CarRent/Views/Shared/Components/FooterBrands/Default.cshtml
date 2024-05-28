@@ -1,0 +1,12 @@
+﻿<!-- _PartialFooter.cshtml -->
+@model IEnumerable<Brand>
+
+<div class="single-footer-widget">
+    <h2>Markalar</h2>
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="/Brands/Index/@item.Id">@item.Name</a></li>
+        }
+    </ul>
+</div>

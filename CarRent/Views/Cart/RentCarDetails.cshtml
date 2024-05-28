@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Rent Car Details";
+}
+
+<style>
+    .payment-form {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .payment-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .payment-form input[type="text"],
+        .payment-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .payment-form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .payment-form button:hover {
+                background-color: #45a049;
+            }
+</style>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="payment-form">
+    <h1>Kiralama Detayları</h1>
+
+    <div>
+        <p><strong>Araç:</strong> @ViewBag.CarName</p>
+        <p><strong>Günlük Fiyat:</strong> @ViewBag.DailyPrice</p>
+        <p><strong>Başlangıç Tarihi:</strong> @ViewBag.StartDate.ToShortDateString()</p>
+        <p><strong>Bitiş Tarihi:</strong> @ViewBag.EndDate.ToShortDateString()</p>
+        <p><strong>Toplam Ücret:</strong> @ViewBag.TotalPrice.ToString("C")</p>
+    </div>
+
+    <form asp-controller="Cart" asp-action="ConfirmRent" method="post">
+        <input type="hidden" name="carId" value="@ViewBag.CarId" />
+        <input type="hidden" name="startDate" value="@ViewBag.StartDate" />
+        <input type="hidden" name="endDate" value="@ViewBag.EndDate" />
+
+        <label for="cardNo">Kart Numarası:</label>
+        <input type="text" id="cardNo" name="cardNo" placeholder="Kart Numarası" required />
+
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" name="cvv" placeholder="CVV" required />
+
+        
+
+        
+
+        <button type="submit">Ödeme Yap</button>
+    </form>
+</div>

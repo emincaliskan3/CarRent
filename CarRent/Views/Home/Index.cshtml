@@ -1,0 +1,165 @@
+﻿@model HomePageViewModel
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <!-- meta data -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!--font-family-->
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+    <!-- title of site -->
+    <title>CarVilla</title>
+    <!-- CSS files -->
+    
+</head>
+<body>
+    <section id="home" class="welcome-hero">
+        <div class="container">
+            <div class="welcome-hero-txt">
+                <h2>İstediğiniz Aracı Uygun Fiyata Kiralayın</h2>
+                <p>İstediğiniz Araçlara Uygun Fiyata Sahip Olun</p>
+                <button class="welcome-btn" onclick="window.location.href='#'">İletişim</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form asp-controller="Cars" asp-action="Search" method="get">
+                        <div class="model-search-content">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-model-search">
+                                        <h2>Model Seç</h2>
+                                        <div class="model-select-icon">
+                                            <select name="model" class="form-control">
+                                                <option value="default">Yıl</option>
+                                                @foreach (var year in Model.Cars.Select(c => c.Model).Distinct())
+                                                {
+                                                    <option value="@year">@year</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-model-search">
+                                        <h2>Marka Seç</h2>
+                                        <div class="model-select-icon">
+                                            <select name="brand" class="form-control">
+                                                <option value="default">Marka</option>
+                                                @foreach (var make in Model.Cars.Select(c => c.Brand).Distinct())
+                                                {
+                                                    <option value="@make.Name">@make.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-model-search">
+                                        <h2>Kategori Seç</h2>
+                                        <div class="model-select-icon">
+                                            <select name="category" class="form-control">
+                                                <option value="default">Kategori</option>
+                                                @foreach (var category in Model.Cars.Select(c => c.Category).Distinct())
+                                                {
+                                                    <option value="@category.Name">@category.Name</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-model-search">
+                                        <h2>Vites Seç</h2>
+                                        <div class="model-select-icon">
+                                            <select name="gearName" class="form-control">
+                                                <option value="default">Vites</option>
+                                                @foreach (var GearName in Model.Cars.Select(c => c.GearName).Distinct())
+                                                {
+                                                    <option value="@GearName">@GearName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="welcome-btn model-search-btn">Arama Yap</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="new-cars" class="new-cars">
+        <div class="container">
+            <div class="section-header">
+                <p>En <span>Yeni</span> Araçlara Göz Atın</p>
+                <h2>Yeni Araçlar</h2>
+            </div>
+
+            @await Html.PartialAsync("_PartialPostView", Model.Posts)
+            
+        </div>
+    </section>
+    <section id="featured-cars" class="featured-cars">
+        <div class="container">
+            <div class="section-header">
+                <p>Popüler <span>Araçlara</span> Göz Atın</p>
+                <h2>Popüler Araçlar</h2>
+            </div>
+            <div class="featured-cars-content">
+                <div class="row">
+                    @await Html.PartialAsync("_PartialPopularCars", Model.Cars)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients-say" class="clients-say">
+        <div class="container">
+            <div class="section-header">
+                <h2>müşterilerimizin yorumları</h2>
+            </div><!--/.section-header-->
+            <div class="row">
+                <div class="owl-carousel testimonial-carousel">
+                    @await Html.PartialAsync("_PartialPopularComments", Model.Comments) <!--/.col-->
+
+                </div><!--/.testimonial-carousel-->
+            </div><!--/.row-->
+        </div><!--/.container-->
+
+    </section>
+    <script src="~/carrent/assets/js/jquery.js"></script>
+
+    <!--modernizr.min.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <!--bootstrap.min.js-->
+    <script src="~/carrent/assets/js/bootstrap.min.js"></script>
+
+    <!-- bootsnav js -->
+    <script src="~/carrent/assets/js/bootsnav.js"></script>
+
+    <!--owl.carousel.js-->
+    <script src="~/carrent/assets/js/owl.carousel.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="~/carrent/assets/js/custom.js"></script>
+   
+    
+  
+</body>
+</html>

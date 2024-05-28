@@ -1,0 +1,68 @@
+﻿@model List<Entities.Order> // Specify the model type
+
+
+<html lang="en">
+<head>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+
+    <title> Kiraladığım Araçlar</title>
+    <style>
+      
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" >
+        <!-- FontAwesome -->
+       
+       
+        /* Add custom styles here if needed */
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5 mb-3">Kiraladığım Araçlar</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Araç</th>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Kiralama Başlangıç Tarihi</th>
+                    <th scope="col">Kiralama Bitiş Tarihi</th>
+                    <th scope="col">Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.CarName</td>
+                        <td>@(order.Car != null ? order.Car.Brand?.Name : "Unknown")</td>
+                        <td>@order.RentStartDate.ToString("dd/MM/yyyy")</td>
+                        <td>@order.RentEndDate.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (order.Status == Entities.OrderStatus.Beklemede)
+                            {
+                                <span class="badge badge-warning"><i class="fas fa-clock mr-1"></i>Beklemede</span>
+                            }
+                            else if (order.Status == Entities.OrderStatus.Onaylandı)
+                            {
+                                <span class="badge badge-success"><i class="fas fa-check-circle mr-1"></i>Onaylandı</span>
+                            }
+                            else if (order.Status == Entities.OrderStatus.Onaylanmadı)
+                            {
+                                <span class="badge badge-danger"><i class="fas fa-times-circle mr-1"></i>Onaylanmadı</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿@model Entities.Order
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDetail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderDetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CVV)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CVV)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CardNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RentStartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RentStartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RentEndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RentEndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Car)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CarName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CarName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Car>
+
+<div class="container">
+   <br />
+    <br />
+    <br />
+    <br />
+     <br />
+      <br />
+       <br />
+        <br />
+       
+
+
+
+
+    <div class="row">
+        @foreach (var car in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <a href="/Cars/Detail/@car?.Id" class="text-decoration-none">
+                <!-- mb-4 sınıfı alt boşluk ekler -->
+                <div class="single-featured-cars">
+                    <div class="featured-img-box">
+                        <div class="featured-cars-img">
+                            <img src="~/Images/@car.Image" class="img-fluid car-img" alt="@car.Model">
+                        </div>
+                        <div class="featured-model-info">
+                            <p>
+                                @car.Model
+                                <span class="featured-hp-span">@car.MotorGucu HP</span>
+                                @car.GearName
+                            </p>
+                        </div>
+                    </div>
+                    <div class="featured-cars-txt">
+                        <h2><a href="#">@car.Brand.Name @car.Name</a></h2>
+                        <h3>@car.Price ₺</h3>
+                        <p>
+                            @car.Description
+                        </p>
+                    </div>
+                </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

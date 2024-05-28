@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Post>
+
+<div class="new-cars-content">
+    <div class="owl-carousel owl-theme" id="new-cars-carousel">
+        @foreach (var post in Model)
+        {
+            <div class="new-cars-item">
+                <div class="single-new-cars-item">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12">
+                            <div class="new-cars-img">
+                                <img src="/Images/@post.Image" class="d-block w-100" alt="...">
+
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-12">
+                            <div class="new-cars-txt">
+                                <h2><a href="#">@post.CategoryId <span>@post.Name</span></a></h2>
+                                <p>
+                                    @post.Description
+                                </p>
+                                <button class="welcome-btn new-cars-btn" onclick="window.location.href='#'">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
